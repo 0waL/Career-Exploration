@@ -29,25 +29,25 @@ const AI_MODELS = {
     name: "Claude",
     vendor: "Anthropic",
     url: "https://claude.ai",
-    free: "무료 플랜 제공 (사용량 제한 있음)",
+    free: "무료 플랜 제공 (claude.ai, 사용량 제한 있음)",
     tags: ["writing", "coding", "summary", "study", "reasoning", "analysis"],
-    summary: "긴 글·문서 이해와 논리적 글쓰기, 코딩에 강한 대화형 AI",
+    summary: "긴 글·문서 이해와 논리적 글쓰기·코딩에 강한 대화형 AI (2026년 최신: Fable 5 · Opus 4.8)",
     strengths: [
-      "긴 문서(수십 페이지)를 한 번에 읽고 요약·분석",
+      "최대 100만 토큰의 긴 문서를 한 번에 읽고 요약·분석",
       "자연스럽고 논리적인 장문 글쓰기",
-      "코드 작성과 디버깅, 단계적 설명",
+      "코드 작성·디버깅과 단계적 설명에 강함",
     ],
   },
   chatgpt: {
     name: "ChatGPT (GPT)",
     vendor: "OpenAI",
     url: "https://chatgpt.com",
-    free: "무료 플랜 제공 (기본 모델)",
+    free: "무료 플랜 제공 (기본 GPT-5 모델)",
     tags: ["writing", "coding", "study", "reasoning", "brainstorm", "image"],
-    summary: "가장 널리 쓰이는 범용 AI, 다양한 작업을 두루 잘함",
+    summary: "가장 널리 쓰이는 범용 AI, 글·코드·이미지를 두루 잘함 (2026년 최신: GPT-5 세대)",
     strengths: [
       "폭넓은 주제의 범용 대화·작문",
-      "이미지 생성·음성 등 다양한 기능 통합",
+      "이미지 생성(DALL·E/GPT Image)·음성 등 기능 통합",
       "아이디어 발상과 브레인스토밍",
     ],
   },
@@ -57,11 +57,11 @@ const AI_MODELS = {
     url: "https://gemini.google.com",
     free: "무료 플랜 제공",
     tags: ["research", "study", "summary", "image", "analysis"],
-    summary: "구글 검색·서비스와 연계가 강한 멀티모달 AI",
+    summary: "구글 검색·서비스와 연계가 강한 멀티모달 AI (2026년 최신: Gemini 3 세대)",
     strengths: [
       "최신 정보가 필요한 자료 조사 (구글 검색 연계)",
-      "유튜브·문서 등 다양한 형식 입력 처리",
-      "구글 워크스페이스(문서·시트)와 연동",
+      "유튜브·이미지·문서 등 다양한 형식 입력 처리",
+      "구글 문서·시트 등 워크스페이스와 연동",
     ],
   },
   perplexity: {
@@ -77,6 +77,19 @@ const AI_MODELS = {
       "조사·리서치 보고서 작성의 첫 단계에 적합",
     ],
   },
+  notebooklm: {
+    name: "NotebookLM",
+    vendor: "Google",
+    url: "https://notebooklm.google.com",
+    free: "무료 사용 가능",
+    tags: ["study", "summary", "research"],
+    summary: "내가 올린 자료(교과서·필기·논문)만 근거로 답하는 학습 특화 AI",
+    strengths: [
+      "업로드한 자료 기반으로 학습 가이드·요약·타임라인 생성",
+      "플래시카드·퀴즈로 시험 대비, 답변에 근거(출처) 표시",
+      "여러 문서를 한 번에 정리·연결 (지어내기 위험이 낮음)",
+    ],
+  },
   copilot: {
     name: "GitHub Copilot",
     vendor: "GitHub / Microsoft",
@@ -90,16 +103,16 @@ const AI_MODELS = {
       "주석을 코드로 변환",
     ],
   },
-  napkin: {
-    name: "Midjourney / DALL·E",
+  imagegen: {
+    name: "Midjourney · DALL·E",
     vendor: "Midjourney / OpenAI",
     url: "https://www.midjourney.com",
-    free: "DALL·E는 ChatGPT/Bing에서 무료, Midjourney는 유료",
+    free: "DALL·E는 ChatGPT에서 사용 가능, Midjourney는 유료",
     tags: ["image"],
-    summary: "텍스트 설명으로 그림·이미지를 생성하는 AI",
+    summary: "텍스트 설명으로 그림을 만드는 AI (2026년 최신: Midjourney V7, DALL·E 4)",
     strengths: [
       "포스터·삽화·발표 자료용 이미지 생성",
-      "원하는 화풍·구도를 글로 묘사하면 그림으로 변환",
+      "Midjourney는 예술적 화풍, DALL·E는 지시 정확도·글자 표현에 강함",
       "로고·아이콘 등 디자인 시안",
     ],
   },
@@ -198,7 +211,7 @@ const TASK_TYPES = [
     icon: "📝",
     desc: "긴 글·자료·영상 내용을 짧게 요약하고 정리",
     keywords: ["요약", "정리", "줄여", "핵심", "간추", "요점", "정리해", "한눈에", "표로", "키워드", "압축"],
-    models: ["claude", "gemini", "chatgpt"],
+    models: ["claude", "gemini", "notebooklm"],
     strategy: {
       title: "분량·형식·관점을 지정하는 전략",
       tips: [
@@ -222,7 +235,7 @@ const TASK_TYPES = [
     icon: "📚",
     desc: "어려운 개념 설명, 공부 도우미, 문제 만들기",
     keywords: ["공부", "학습", "개념", "이해", "설명", "쉽게", "알려줘", "가르쳐", "예시", "비유", "원리", "왜", "퀴즈", "문제 만들", "암기", "복습"],
-    models: ["claude", "chatgpt", "gemini"],
+    models: ["claude", "notebooklm", "chatgpt"],
     strategy: {
       title: "단계적 설명·비유를 요청하는 전략",
       tips: [
@@ -319,7 +332,7 @@ const TASK_TYPES = [
     icon: "🎨",
     desc: "포스터, 삽화, 발표 자료용 그림 만들기",
     keywords: ["이미지", "그림", "그려", "사진", "포스터", "삽화", "디자인", "로고", "아이콘", "일러스트", "캐릭터", "배경", "생성 이미지"],
-    models: ["napkin", "chatgpt", "gemini"],
+    models: ["imagegen", "chatgpt", "gemini"],
     strategy: {
       title: "주제·화풍·구도를 구체적으로 묘사하는 전략",
       tips: [
